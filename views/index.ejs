@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Royale</title>
+    <link rel="stylesheet" href="/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Quiz Royale <span class="icon">👑</span></h1>
+      <div class="question-box">
+        Which country is: <strong class="countryName"><%= question.country %></strong>-(<%=question.id%>)?
+      </div>
+      <form action="/quiz" method="POST">
+        <input
+          type="text"
+          name="answer"
+          placeholder="Your noble answer..."
+          required
+          autofocus
+        />
+        <input type="submit" value="Submit Answer" />
+      </form>
+      <h3>Your Score: <%= score %></h3>
+      <% if (locals.mess) { 
+          let cls = mess1 === 'Correct!' ? 'correct' : ((mess1 === 'info' ? 'info' : 'wrong'));
+          let icon = mess1 === 'Correct!' ? '✅' : (mess1 === 'info' ? '💡' : '❌');
+      %>
+      <p class="message <%= cls %>"><%= icon %> <%= mess %></p>
+      <% } %>
+    </div>
+  </body>
+</html>
